@@ -1,0 +1,12 @@
+#!/bin/sh -eu
+
+. common
+
+ok=0
+
+while read -r line; do
+  # shellcheck disable=SC2086
+  check_report $line && ok=$((ok + 1))
+done <input
+
+printf "%d\n" "$ok" # 224

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+grep -Eo "mul\(\d+,\d+\)" input |
+  tr -d 'mul()' | tr ',' '*' |
+  paste -sd+ - |
+  bc # 187833789
