@@ -13,7 +13,7 @@ check_dampened_report() {
         sed -E "s/$i//; s/,{2,}/,/; s/^,|,\$//"
     )"
 
-    # print nth argument for n in filter
+    # build report excluding the i-th level
     iter_level=$(printf "%s " "$@" | cut -d' ' -f"$iter_filter")
 
     # shellcheck disable=SC2086
