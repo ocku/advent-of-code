@@ -1,7 +1,11 @@
 #!/bin/sh -eu
 # this is terribly slow
 
-. common
+{
+  [ $# -lt 1 ] || [ ! -f "$1" ]
+} && exit 1
+
+. common.sh
 
 check_dampened_report() {
   filter="$(seq 1 "$#" | paste -sd, -)" #1,2,3,4,...
@@ -30,6 +34,6 @@ ok=0
 while read -r line; do
   # shellcheck disable=SC2086
   check_dampened_report $line && ok=$((ok + 1))
-done <input
+done <"$1"
 
 printf "%d\n" "$ok" # 293

@@ -1,6 +1,10 @@
 #!/bin/sh
 
-grep -Eo "mul\(\d+,\d+\)|do\(\)|don't\(\)" input |
+{
+  [ $# -lt 1 ] || [ ! -f "$1" ]
+} && exit 1
+
+grep -Eo "mul\(\d+,\d+\)|do\(\)|don't\(\)" "$1" |
   tr -d "'mul()" | tr ',' '*' |
   awk '
     BEGIN     { skip=0 }
