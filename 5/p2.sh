@@ -9,10 +9,8 @@ input="$1"
 print_update_if_unordered() {
   update="$1"
   pages="$(printf "%s" "$update" | tr ',' '|')"
-  pattern="$(printf "(%s)\\|(%s)\n" "$pages" "$pages")"
-
   compiled_rules="$(
-    grep -E "$pattern" "$input" |
+    grep -E "($pages)\\|($pages)" "$input" |
       tr '|' ' ' |
       tsort # life saver
   )"
