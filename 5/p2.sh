@@ -30,9 +30,8 @@ print_update_if_unordered() {
       continue
     }
 
-    [ "$current_offset" -lt "$offset" ] && {
+    [ "$current_offset" -lt "$offset" ] &&
       reordered=1
-    }
 
     offset="$current_offset"
   done
